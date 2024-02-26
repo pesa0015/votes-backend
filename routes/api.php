@@ -21,12 +21,3 @@ Route::resource('votings', VotingController::class, ['store', 'update', 'show'])
 Route::get('vote/{suggestionUuid}/{email}', '\App\Http\Controllers\VoteController@show');
 
 Route::resource('confirmations', ConfirmationController::class, ['store', 'update']);
-
-Route::get('/', function() {
-    return new \App\Mail\SendVotingEmail(\App\Models\Voting::first(), \App\Models\Voting::first()->votes()->first());
-});
-
-Route::get('/test', function() {
-    // echo \App\Models\Voting::first()->votes;
-    \App\Models\Vote::where('uuid', '08fd717e-e9ca-36d7-82a4-bdf260b21b67')->first()->update(['suggestion_id' => null]);
-});
